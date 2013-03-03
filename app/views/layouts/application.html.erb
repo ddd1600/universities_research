@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BootstrapRspecLibioCloneApp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class = "container">
+    <div class = "row">
+      <div class="span9">    
+        <%= yield %>
+      </div>
+      <div class="span3">
+        <h2>About</h2>
+        Text goes here
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
