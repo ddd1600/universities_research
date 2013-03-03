@@ -17,6 +17,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'bcrypt-ruby'
 
 gem 'rb-readline'
 gem 'nokogiri'
