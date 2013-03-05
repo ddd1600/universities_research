@@ -15,8 +15,10 @@
     <th><%= sortable "total_enrollment_2011", "2011 Enrollment" %></th>
     <th><%= sortable "pctg_total_enrollment_change", "% Change" %></th>
     <th><%= sortable "latest_endowment_number", "Latest Endowment Number" %></th>
+    <th><%= sortable "revenues_2011", "Annual Revenue" %></th>
     <th><%= sortable "revenues_pctg_tuition_2011", "Rev % Tuition" %></th>
     <th><%= sortable "revenues_pctg_federal_aid_2011", "Revenues % FedAid" %></th>
+    <th><%= sortable "revenues_pctg_priv_gifts_2011", "Revenues % Private Gifts" %></th>
     <th><%= sortable "revenues_pctg_inv_return_2011", "Revenues % Inv Return" %></th>
     <th><%= sortable "instruction_exp_person_2011", "Instruction $/Student" %>
     <th><%= sortable "research_exp_per_person_2011", "Research $/Student" %>
@@ -25,17 +27,19 @@
   <tr>
     <td><%= link_to f.name, university_path(f) %></td>
     <td><%= "#{f.city}, #{f.state}" %></td>
-    <td><%= link_to f.web_address, f.web_address %></td>
+    <td><%= link_to f.web_address.downcase, f.web_address %></td>
     <td><%= f.total_enrollment_2003 %></td>
     <td><%= f.total_enrollment_2011 %></td>
     <% x = f.pctg_total_enrollment_change.round(2) if f.pctg_total_enrollment_change || nil %>
     <td><%= "#{x}%" %></td>
     <td><%= number_to_currency(f.latest_endowment_number, :unit => "$") %></td>
+    <td><%= number_to_currency(f.revenues_2011, :unit => "$") %></td>
     <td><%= f.revenues_pctg_tuition_2011 %></td>
     <td><%= f.revenues_pctg_federal_aid_2011 %></td>
+    <td><%= f.revenues_pctg_priv_gifts_2011 %></td>
     <td><%= f.revenues_pctg_inv_return_2011 %></td>
-    <td><%= f.instruction_exp_person_2011 %></td>
-    <td><%= f.research_exp_per_person_2011 %></td>
+    <td><%= number_to_currency(f.instruction_exp_person_2011, :unit => "$") %></td>
+    <td><%= number_to_currency(f.research_exp_per_person_2011, :unit => "$") %></td>
   </tr>
   <% end %>
 </table>
