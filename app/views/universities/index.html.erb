@@ -1,6 +1,8 @@
 <%= form_tag universities_path, :method => "get", :class => "form-search" do %>
   <%= label_tag :query, "Search by name" %>
   <%= text_field_tag :query %>
+  <%= label_tag :state  %>
+  <%= select_tag :state, options_for_select(@states, nil)  %>
   <%= submit_tag "Search", :class => 'btn' %>
 <% end %>
 
@@ -8,21 +10,21 @@
 
 <table class="table table-bordered table-hover">
   <tr>
-    <th><%= sortable "name", "Name" %></th>
-    <th><%= sortable "city", "City" %></th>
+    <th><%= sortable "name", "Name", params[:state] %></th>
+    <th><%= sortable "city", "City", params[:state] %></th>
     <th><%= sortable "state", "State" %></th>
     <th>Web Address</th>
-    <th><%= sortable "total_enrollment_2003", "2003 Enrollment" %></th>
-    <th><%= sortable "total_enrollment_2011", "2011 Enrollment" %></th>
-    <th><%= sortable "pctg_total_enrollment_change", "% Change" %></th>
-    <th><%= sortable "latest_endowment_number", "Latest Endowment Number" %></th>
-    <th><%= sortable "revenues_2011", "Annual Revenue" %></th>
-    <th><%= sortable "revenues_pctg_tuition_2011", "Rev % Tuition" %></th>
-    <th><%= sortable "revenues_pctg_federal_aid_2011", "Revenues % FedAid" %></th>
-    <th><%= sortable "revenues_pctg_priv_gifts_2011", "Revenues % Private Gifts" %></th>
-    <th><%= sortable "revenues_pctg_inv_return_2011", "Revenues % Inv Return" %></th>
-    <th><%= sortable "instruction_exp_person_2011", "Instruction $/Student" %>
-    <th><%= sortable "research_exp_per_person_2011", "Research $/Student" %>
+    <th><%= sortable "total_enrollment_2003", "2003 Enrollment", params[:state] %></th>
+    <th><%= sortable "total_enrollment_2011", "2011 Enrollment", params[:state] %></th>
+    <th><%= sortable "pctg_total_enrollment_change", "% Change", params[:state] %></th>
+    <th><%= sortable "latest_endowment_number", "Latest Endowment Number", params[:state] %></th>
+    <th><%= sortable "revenues_2011", "Annual Revenue", params[:state] %></th>
+    <th><%= sortable "revenues_pctg_tuition_2011", "Rev % Tuition", params[:state] %></th>
+    <th><%= sortable "revenues_pctg_federal_aid_2011", "Revenues % FedAid", params[:state] %></th>
+    <th><%= sortable "revenues_pctg_priv_gifts_2011", "Revenues % Private Gifts", params[:state] %></th>
+    <th><%= sortable "revenues_pctg_inv_return_2011", "Revenues % Inv Return", params[:state] %></th>
+    <th><%= sortable "instruction_exp_person_2011", "Instruction $/Student", params[:state] %>
+    <th><%= sortable "research_exp_per_person_2011", "Research $/Student", params[:state] %>
   </tr>
   <% @universities.each do |f| %>
   <tr>
