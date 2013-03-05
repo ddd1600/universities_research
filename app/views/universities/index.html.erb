@@ -15,6 +15,11 @@
     <th><%= sortable "total_enrollment_2011", "2011 Enrollment" %></th>
     <th><%= sortable "pctg_total_enrollment_change", "% Change" %></th>
     <th><%= sortable "latest_endowment_number", "Latest Endowment Number" %></th>
+    <th><%= sortable "revenues_pctg_tuition_2011", "Rev % Tuition" %></th>
+    <th><%= sortable "revenues_pctg_federal_aid_2011", "Revenues % FedAid" %></th>
+    <th><%= sortable "revenues_pctg_inv_return_2011", "Revenues % Inv Return" %></th>
+    <th><%= sortable "instruction_exp_person_2011", "Instruction $/Student" %>
+    <th><%= sortable "research_exp_per_person_2011", "Research $/Student" %>
   </tr>
   <% @universities.each do |f| %>
   <tr>
@@ -26,6 +31,11 @@
     <% x = f.pctg_total_enrollment_change.round(2) if f.pctg_total_enrollment_change || nil %>
     <td><%= "#{x}%" %></td>
     <td><%= number_to_currency(f.latest_endowment_number, :unit => "$") %></td>
+    <td><%= f.revenues_pctg_tuition_2011 %></td>
+    <td><%= f.revenues_pctg_federal_aid_2011 %></td>
+    <td><%= f.revenues_pctg_inv_return_2011 %></td>
+    <td><%= f.instruction_exp_person_2011 %></td>
+    <td><%= f.research_exp_per_person_2011 %></td>
   </tr>
   <% end %>
 </table>

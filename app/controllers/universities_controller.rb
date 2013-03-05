@@ -33,6 +33,16 @@ class UniversitiesController < ApplicationController
       f.series(:name => "Investment Return", :data => @university.core_revenues.each.map(&:investment_return_pctg_core))
       f.series(:name => "Other", :data => @university.core_revenues.each.map(&:other_rev_pctg_core))
     end
+    e_years = [1980, 1986, 1991, 1996, 2000, 2004, 2006, 2007, 2008, 2009, 2010, 2011]
+    @endowments = LazyHighCharts::HighChart.new('graph') do |f|
+      f.options[:xAxis][:categories] = e_years
+      e_data = []
+      e_years.each do |year|
+        x = eval("@university.endowment_#{year}")
+        e_data << x
+      end
+      f.series(:name => "Endowment Size", :data => e_data)
+    end
   end
   
   private

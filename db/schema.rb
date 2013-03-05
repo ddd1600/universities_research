@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130305033412) do
+ActiveRecord::Schema.define(:version => 20130305040501) do
 
   create_table "colleges", :force => true do |t|
     t.integer  "year"
@@ -103,8 +103,8 @@ ActiveRecord::Schema.define(:version => 20130305033412) do
     t.text     "institution_opeid"
     t.text     "institution_ipeds_unitid"
     t.text     "web_address"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.float    "longitude"
     t.float    "latitude"
     t.integer  "ipeds_unit_id"
@@ -136,6 +136,13 @@ ActiveRecord::Schema.define(:version => 20130305033412) do
     t.integer  "endowment_1980"
     t.boolean  "private_school"
     t.integer  "latest_endowment_number"
+    t.integer  "revenues_pctg_tuition_2011"
+    t.integer  "revenues_pctg_federal_aid_2011"
+    t.integer  "revenues_pctg_inv_return_2011"
+    t.integer  "revenues_pctg_priv_gifts_2011"
+    t.integer  "revenues_2011"
+    t.integer  "instruction_exp_person_2011"
+    t.integer  "research_exp_per_person_2011"
   end
 
   create_table "users", :force => true do |t|
