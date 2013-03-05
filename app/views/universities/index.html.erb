@@ -1,0 +1,21 @@
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Hometown</th>
+    <th>Web Address</th>
+    <th>2003 Enrollment</th>
+    <th>2011 Enrollment</th>
+    <th>%&Delta;</th>
+  </tr>
+  <% @universities.each do |f| %>
+  <tr>
+    <td><%= link_to f.name, university_path(f) %></td>
+    <td><%= "#{f.city}, #{f.state}" %></td>
+    <td><%= link_to f.web_address, f.web_address %></td>
+    <td><%= f.total_enrollment_2003 %></td>
+    <td><%= f.total_enrollment_2011 %></td>
+    <% x = f.pctg_total_enrollment_change.round(2) if f.pctg_total_enrollment_change || nil %>
+    <td><%= "#{x}%" %></td>
+  </tr>
+  <% end %>
+</table>

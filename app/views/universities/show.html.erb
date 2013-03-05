@@ -1,0 +1,109 @@
+
+  <% u = @university %>
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Enrollment 2011</th>
+    <th>Website</th>
+  </tr>
+  <tr>
+    <td><%= u.name %></td>
+    <td><%= u.city %></td>
+    <td><%= u.state %></td>
+    <td><%= u.total_enrollment_2011 %></td>
+    <td><%= link_to u.web_address, u.web_address %></td>
+  </tr>
+</table>
+
+<%= link_to "Back", universities_path, :class => 'btn'  %>
+
+<h1>Available Datasets on <%= @university.name %></h1>
+<table class="table table-borders table-hover">
+  <h2>Room and Board Stats</h2>
+  <tr>
+    <th>Year</th>
+    <th>Total Dormroom Capacity</th>
+    <th>Average Dorm Room Cost/Year</th>
+  </tr>
+  <% @university.room_and_boards.each do |r| %>
+  <tr>
+    <td><%= r.year %></td>
+    <td><%= r.total_dormroom_capacity %></td>
+    <td><%= r.avg_room_cost_per_year %></td>
+  </tr>
+<% end %>
+</table>
+
+<table class="table table-borders table-hover">
+  <h2>Freshman Entering Stats</h2>
+  <tr>
+    <th>Year</th>
+    <th>Freshmen Entering</th>
+    <th>Total Entering Undergrads</th>
+  </tr>
+  <% @university.freshman_stats.each do |r| %>
+  <tr>
+    <td><%= r.year %></td>
+    <td><%= r.freshmen_entering %></td>
+    <td><%= r.total_entering_undergrads %></td>
+  </tr>
+<% end %>
+</table>
+
+<table class="table table-borders table-hover">
+  <h2>Expenses</h2>
+  <tr>
+    <th>Year</th>
+    <th>Core Expenses USD</th>
+    <th>Instruction Exp per FTS</th>
+    <th>Research Exp per FTS</th>
+    <th>Public Service Exp per FTS</th>
+    <th>Academic Support Exp per FTS</th>
+    <th>Student Services Exp Support per FTS</th>
+    <th>Institutional Support Exp per FTS</th>
+    <th>All Other Exp per FTS</th>
+  </tr>
+  <% @university.core_expenses.each do |r| %>
+  <tr>
+    <td><%= r.year %></td>
+    <td><%= r.core_expenses_usd %></td>
+    <td><%= r.instruction_exp_per_fte %></td>
+    <td><%= r.research_exp_per_fte %></td>
+    <td><%= r.public_service_exp_per_fte %></td>
+    <td><%= r.academic_support_exp_per_fte %></td>
+    <td><%= r.student_services_exp_per_fte %></td>
+    <td><%= r.institutional_support_exp_per_fte %></td>
+    <td><%= r.all_other_core_exp_per_fte %></td>
+  </tr>
+<% end %>
+</table>
+
+<table class="table table-borders table-hover">
+  <h2>Revenues and Sources</h2>
+  <tr>
+    <th>Year</th>
+    <th>Core Revenues USD</th>
+    <th>Tuition as %</th>
+    <th>State Approps as %</th>
+    <th>City Approps as %</th>
+    <th>Federal Approps as %</th>
+    <th>Private Gifts as %</th>
+    <th>Investment Return as %</th>
+    <th>Other Sources as %</th>
+  </tr>
+  <% @university.core_revenues.each do |r| %>
+  <tr>
+    <td><%= r.year %></td>
+    <td><%= r.core_revenues_usd %></td>
+    <td><%= r.tuition_et_al_pctg_core %></td>
+    <td><%= r.state_approp_pctg_core %></td>
+    <td><%= r.local_govt_approp_pctg %></td>
+    <td><%= r.federal_approp_pctg %></td>
+    <td><%= r.private_gifts_pctg_core %></td>
+    <td><%= r.investment_return_pctg_core %></td>
+    <td><%= r.other_rev_pctg_core %></td>
+  </tr>
+<% end %>
+</table>

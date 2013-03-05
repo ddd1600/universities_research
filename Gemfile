@@ -16,6 +16,8 @@ group :assets do
   gem "less-rails"
 end
 
+gem 'twitter-bootstrap-markup-rails', '0.3.2.2'
+
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
 
