@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130305040501) do
+ActiveRecord::Schema.define(:version => 20130305065606) do
 
   create_table "colleges", :force => true do |t|
     t.integer  "year"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130305040501) do
     t.integer  "year"
     t.integer  "university_id"
     t.integer  "ipeds_id"
-    t.integer  "core_expenses_usd"
+    t.decimal  "core_expenses_usd"
     t.integer  "instruction_exp_per_fte"
     t.integer  "research_exp_per_fte"
     t.integer  "public_service_exp_per_fte"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20130305040501) do
 
   create_table "core_revenues", :force => true do |t|
     t.integer  "year"
-    t.integer  "core_revenues_usd"
+    t.decimal  "core_revenues_usd"
     t.integer  "tuition_et_al_pctg_core"
     t.integer  "state_approp_pctg_core"
     t.integer  "local_govt_approp_pctg"
@@ -122,25 +122,25 @@ ActiveRecord::Schema.define(:version => 20130305040501) do
     t.boolean  "ccc_class"
     t.boolean  "bbb_class"
     t.boolean  "aaa_class"
-    t.integer  "endowment_2011"
-    t.integer  "endowment_2010"
-    t.integer  "endowment_2009"
-    t.integer  "endowment_2008"
-    t.integer  "endowment_2007"
-    t.integer  "endowment_2006"
-    t.integer  "endowment_2004"
-    t.integer  "endowment_2000"
-    t.integer  "endowment_1996"
-    t.integer  "endowment_1991"
-    t.integer  "endowment_1986"
-    t.integer  "endowment_1980"
+    t.decimal  "endowment_2011"
+    t.decimal  "endowment_2010"
+    t.decimal  "endowment_2009"
+    t.decimal  "endowment_2008"
+    t.decimal  "endowment_2007"
+    t.decimal  "endowment_2006"
+    t.decimal  "endowment_2004"
+    t.decimal  "endowment_2000"
+    t.decimal  "endowment_1996"
+    t.decimal  "endowment_1991"
+    t.decimal  "endowment_1986"
+    t.decimal  "endowment_1980"
     t.boolean  "private_school"
-    t.integer  "latest_endowment_number"
+    t.decimal  "latest_endowment_number"
     t.integer  "revenues_pctg_tuition_2011"
     t.integer  "revenues_pctg_federal_aid_2011"
     t.integer  "revenues_pctg_inv_return_2011"
     t.integer  "revenues_pctg_priv_gifts_2011"
-    t.integer  "revenues_2011"
+    t.decimal  "revenues_2011"
     t.integer  "instruction_exp_person_2011"
     t.integer  "research_exp_per_person_2011"
   end
