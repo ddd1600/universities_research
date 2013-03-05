@@ -9,8 +9,7 @@
 <table class="table table-bordered table-hover">
   <tr>
     <th><%= sortable "name", "Name" %></th>
-    <th><%= sortable "city", "City" %></th>
-    <th><%= sortable "state", "State" %></th>
+    <th>Hometown</th>
     <th>Web Address</th>
     <th><%= sortable "total_enrollment_2003", "2003 Enrollment" %></th>
     <th><%= sortable "total_enrollment_2011", "2011 Enrollment" %></th>
@@ -27,8 +26,7 @@
   <% @universities.each do |f| %>
   <tr>
     <td><%= link_to f.name, university_path(f) %></td>
-    <td><%= f.city %></td>
-    <td><%= f.state %></td>
+    <td><%= "#{f.city}, #{f.state}" %></td>
     <td><%= link_to f.web_address.downcase, f.web_address %></td>
     <td><%= f.total_enrollment_2003 %></td>
     <td><%= f.total_enrollment_2011 %></td>
