@@ -17,3 +17,12 @@ test:
   database: db/test.sqlite3
   pool: 5
   timeout: 5000
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: douglas_development_research_production
+  pool: 5
+  host: /tmp
+  username: douglas_development
+  password: douglas_development
