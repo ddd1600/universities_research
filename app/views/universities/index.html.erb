@@ -1,11 +1,20 @@
+<%= form_tag universities_path, :method => "get", :class => "form-search" do %>
+  <%= label_tag :query, "Search by name" %>
+  <%= text_field_tag :query %>
+  <%= submit_tag "Search", :class => 'btn' %>
+<% end %>
+
+<%= will_paginate @universities %>
+
 <table class="table table-bordered table-hover">
   <tr>
-    <th>Name</th>
+    <th><%= sortable "name", "Name" %></th>
     <th>Hometown</th>
     <th>Web Address</th>
-    <th>2003 Enrollment</th>
-    <th>2011 Enrollment</th>
-    <th>%&Delta;</th>
+    <th><%= sortable "total_enrollment_2003", "2003 Enrollment" %></th>
+    <th><%= sortable "total_enrollment_2011", "2011 Enrollment" %></th>
+    <th><%= sortable "pctg_total_enrollment_change", "% Change" %></th>
+    <th><%= sortable "latest_endowment_number", "Latest Endowment Number" %></th>
   </tr>
   <% @universities.each do |f| %>
   <tr>
@@ -16,6 +25,7 @@
     <td><%= f.total_enrollment_2011 %></td>
     <% x = f.pctg_total_enrollment_change.round(2) if f.pctg_total_enrollment_change || nil %>
     <td><%= "#{x}%" %></td>
+    <td><%= number_to_currency(f.latest_endowment_number, :unit => "$") %></td>
   </tr>
   <% end %>
 </table>

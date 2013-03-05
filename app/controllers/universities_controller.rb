@@ -1,9 +1,46 @@
 class UniversitiesController < ApplicationController
+  helper_method :sort_column, :sort_direction
   def index
-    @universities = University.order('total_enrollment_2011 desc')
+    @universities = University.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 30) unless params[:query]
+    @universities = University.where('name LIKE ?', "%#{params[:query]}%").paginate(:page => params[:page], :per_page => 30) if params[:query]
   end
 
   def show
     @university = University.find(params[:id])
+    @rb = LazyHighCharts::HighChart.new('graph') do |f|
+      f.options[:xAxis][:categories] = @university.room_and_boards.each.map {|t| t.year }
+      f.series(:name => "Total Dormroom Capacity", :data => @university.room_and_boards.each.map(&:total_dormroom_capacity))
+      f.series(:name => "Freshmen Entering", :data => @university.room_and_boards.each.map(&:freshmen_entering))
+      f.series(:name => "Total Entering Undergrads", :data => @university.room_and_boards.each.map(&:total_entering_undergrads))
+    end
+    @exp = LazyHighCharts::HighChart.new('graph') do |f|
+      f.options[:xAxis][:categories] = @university.core_expenses.each.map {|t| t.year }
+       f.series(:name => "Instruction", :data => @university.core_expenses.each.map(&:instruction_exp_per_fte))
+      f.series(:name => "Research", :data => @university.core_expenses.each.map(&:research_exp_per_fte))
+      f.series(:name => "Public Service", :data => @university.core_expenses.each.map(&:public_service_exp_per_fte))
+      f.series(:name => "Academic Support", :data => @university.core_expenses.each.map(&:academic_support_exp_per_fte))
+      f.series(:name => "Student Services", :data => @university.core_expenses.each.map(&:student_services_exp_per_fte))
+      f.series(:name => "Institutional Support", :data => @university.core_expenses.each.map(&:institutional_support_exp_per_fte))
+      f.series(:name => "Other", :data => @university.core_expenses.each.map(&:all_other_core_exp_per_fte))
+    end
+    @rev = LazyHighCharts::HighChart.new('graph') do |f|
+      f.options[:xAxis][:categories] = @university.core_revenues.each.map {|t| t.year }
+      f.series(:name => "Tuition", :data => @university.core_revenues.each.map(&:tuition_et_al_pctg_core))
+      f.series(:name => "State Approps", :data => @university.core_revenues.each.map(&:state_approp_pctg_core))
+      f.series(:name => "City Approps", :data => @university.core_revenues.each.map(&:local_govt_approp_pctg))
+      f.series(:name => "Federal Approps", :data => @university.core_revenues.each.map(&:federal_approp_pctg))
+      f.series(:name => "Private Gifts", :data => @university.core_revenues.each.map(&:private_gifts_pctg_core))
+      f.series(:name => "Investment Return", :data => @university.core_revenues.each.map(&:investment_return_pctg_core))
+      f.series(:name => "Other", :data => @university.core_revenues.each.map(&:other_rev_pctg_core))
+    end
+  end
+  
+  private
+  def sort_column
+    University.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

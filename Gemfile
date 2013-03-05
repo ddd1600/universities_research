@@ -17,6 +17,7 @@ group :assets do
 end
 
 gem 'twitter-bootstrap-markup-rails', '0.3.2.2'
+gem 'will_paginate', '~> 3.0.0'
 
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
@@ -30,3 +31,4 @@ gem 'httparty'
 gem 'area'
 gem 'geokit-rails3'
 gem 'watir-webdriver'
+

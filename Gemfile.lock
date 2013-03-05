@@ -161,6 +161,7 @@ GEM
     watir-webdriver (0.6.2)
       selenium-webdriver (>= 2.18.0)
     websocket (1.0.7)
+    will_paginate (3.0.4)
 
 PLATFORMS
   ruby
@@ -187,3 +188,4 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   watir-webdriver
+  will_paginate (~> 3.0.0)

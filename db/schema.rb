@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130303070126) do
+ActiveRecord::Schema.define(:version => 20130305033412) do
 
   create_table "colleges", :force => true do |t|
     t.integer  "year"
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(:version => 20130303070126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "ok"
+    t.integer  "freshmen_entering"
+    t.integer  "total_entering_undergrads"
   end
 
   create_table "universities", :force => true do |t|
@@ -133,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20130303070126) do
     t.integer  "endowment_1986"
     t.integer  "endowment_1980"
     t.boolean  "private_school"
+    t.integer  "latest_endowment_number"
   end
 
   create_table "users", :force => true do |t|
