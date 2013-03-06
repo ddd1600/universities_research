@@ -134,8 +134,6 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
-    spinjs-rails (1.2.8)
-      rails (>= 3.1)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -182,7 +180,6 @@ DEPENDENCIES
   rb-readline
   rspec-rails
   sass-rails (~> 3.2.3)
-  spinjs-rails
   sqlite3
   therubyracer
   twitter-bootstrap-rails

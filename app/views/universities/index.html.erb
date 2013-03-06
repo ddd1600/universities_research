@@ -31,10 +31,13 @@
     <th><%= sortable "total_enrollment_2003", "2003 Enrollment", params[:state] %></th>
     <th><%= sortable "total_enrollment_2011", "2011 Enrollment", params[:state] %></th>
     <th><%= sortable "pctg_total_enrollment_change", "% Change", params[:state] %></th>
+    <th><%= sortable "freshmen_entering_latest_available", "2011 Freshman Fall Class &Dagger;".html_safe, params[:state] %></th>
     <th><%= sortable "latest_endowment_number", "Latest Endowment Number", params[:state] %></th>
     <th><%= sortable "revenues_2011", "Annual Revenue", params[:state] %></th>
     <th><%= sortable "revenues_pctg_tuition_2011", "Rev % Tuition", params[:state] %></th>
     <th><%= sortable "revenues_pctg_federal_aid_2011", "Revenues % FedAid", params[:state] %></th>
+    <th><%= sortable "revenues_pctg_state_funding_2011", "Revenues % State Funds", params[:state] %></th>
+    <th><%= sortable "revenues_pctg_substate_funding_2011", "Revenues % Sub-state (local) funds", params[:state] %></th>
     <th><%= sortable "revenues_pctg_priv_gifts_2011", "Revenues % Private Gifts", params[:state] %></th>
     <th><%= sortable "revenues_pctg_inv_return_2011", "Revenues % Inv Return", params[:state] %></th>
     <th><%= sortable "instruction_exp_person_2011", "Instruction $/Student", params[:state] %>
@@ -50,10 +53,13 @@
     <td><%= f.total_enrollment_2011 %></td>
     <% x = f.pctg_total_enrollment_change.round(2) if f.pctg_total_enrollment_change || nil %>
     <td><%= "#{x}%" %></td>
+    <td><%= f.freshmen_entering_latest_available %></td>
     <td><%= number_to_currency(f.latest_endowment_number, :unit => "$") %></td>
     <td><%= number_to_currency(f.revenues_2011, :unit => "$") %></td>
     <td><%= f.revenues_pctg_tuition_2011 %></td>
     <td><%= f.revenues_pctg_federal_aid_2011 %></td>
+    <td><%= f.revenues_pctg_state_funding_2011 %></td>
+    <td><%= f.revenues_pctg_substate_funding_2011 %></td>
     <td><%= f.revenues_pctg_priv_gifts_2011 %></td>
     <td><%= f.revenues_pctg_inv_return_2011 %></td>
     <td><%= number_to_currency(f.instruction_exp_person_2011, :unit => "$") %></td>
@@ -61,3 +67,9 @@
   </tr>
   <% end %>
 </table>
+
+<div class="well">
+	<ul>Notes<br/>
+	&Dagger; - or most recent (some Ivy League records are as old as 1996 but no more than that, most are c. 2004-2011)
+	</ul>
+</div>
