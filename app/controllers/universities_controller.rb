@@ -6,8 +6,7 @@ class UniversitiesController < ApplicationController
     @universities = University.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 30) unless params[:query]
     @universities = University.where(:state => params[:state]).paginate(:page => params[:page], :per_page => 30) if params[:state]
     @universities = University.where('name LIKE ?', "%#{params[:query]}%").paginate(:page => params[:page], :per_page => 30) if params[:query]
-    @universities = University.order(sort_column + " " + sort_direction).where(:state => params[:state]).paginate(:page => params[:page], :per_page => 30) if params[:state] and params[:sort]
-    @universities = University.order(sort_column + " " + sort_direction).where(:state => params[:state]).where('name LIKE ?', "%#{params[:query]}%").paginate(:page => params[:page], :per_page => 30) if params[:state] and params[:sort] and params[:query]
+    @universities = University.order(sort_column + " " + sort_direction).where(:state => params[:state]).paginate(:page => params[:page], :per_page => 30) if !params[:state].blank?
   end
 
   def show
