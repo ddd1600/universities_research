@@ -15,11 +15,13 @@
 
 <% if params[:sort] %>
 <% desc_or_asc = {"desc" => "highest to lowest", "asc" => "lowest to highest"}  %>
-  <div class="well well-small">
-  	<h5>
+  <div class="well well-small"><h5>
   	  Sorted by <%= params[:sort].titleize %>, <%= desc_or_asc[params[:direction]]  %>  	
-  	</h5>
-  </div>
+  </h5></div>
+  <% elsif current_page?(root_url) || current_page?(universities_url) %>
+  <div class="well well-small"><h5>
+  	  Sorted by Research Spending per Full Time Student, highest to lowest  	
+  </h5></div>  
 <% end %>
 
 <table class="table table-bordered table-hover">
