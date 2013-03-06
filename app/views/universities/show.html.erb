@@ -1,29 +1,9 @@
-
-  <% u = @university %>
-
-<table class="table table-bordered table-hover">
-  <tr>
-    <th>Name</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Enrollment 2011</th>
-    <th>Website</th>
-  </tr>
-  <tr>
-    <td><%= u.name %></td>
-    <td><%= u.city %></td>
-    <td><%= u.state %></td>
-    <td><%= u.total_enrollment_2011 %></td>
-    <td><%= link_to u.web_address, u.web_address %></td>
-  </tr>
-</table>
-
 <div class="hero-unit">
   <h1><%= @university.name  %></h1>
   <p><%= @university.address  %></p>
   <p><%= "#{@university.city}, #{@university.state} #{@university.zip}"  %></p>
   <p>Freshman Class of 2015 size (&Dagger;): <%= @university.freshmen_entering_latest_available %></p>
-  <p><a href="<%= @university.web_address %>"><%= @university.web_address.downcase %></a></p>
+  <p><%= link_to nil, "http://#{@university.web_address}".downcase  %></p>
   <p><%= @university.phone  %></p>
   <%= link_to "Back", universities_path, :class => 'btn'  %>
 </div>

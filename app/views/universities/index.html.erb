@@ -50,7 +50,7 @@
     <td><%= link_to f.name, university_path(f) %></td>
     <td><%= f.city %></td>
     <td><%= f.state %></td>
-    <td><%= link_to f.web_address.downcase, f.web_address %></td>
+    <td><%= link_to nil, "http://#{f.web_address}".downcase %></td>
     <td><%= f.total_enrollment_2003 %></td>
     <td><%= f.total_enrollment_2011 %></td>
     <% x = f.pctg_total_enrollment_change.round(2) if f.pctg_total_enrollment_change || nil %>
