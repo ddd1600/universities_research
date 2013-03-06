@@ -17,7 +17,7 @@
 <% desc_or_asc = {"desc" => "highest to lowest", "asc" => "lowest to highest"}  %>
   <div class="well well-small">
   	<h5>
-  	  Sorted by <%= params[:sort] %>, <%= desc_or_asc[params[:direction]]  %>  	
+  	  Sorted by <%= params[:sort].titleize %>, <%= desc_or_asc[params[:direction]]  %>  	
   	</h5>
   </div>
 <% end %>
