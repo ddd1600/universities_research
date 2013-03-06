@@ -1,7 +1,7 @@
 class UniversitiesController < ApplicationController
   helper_method :sort_column, :sort_direction
   def index
-    params[:sort] = "research_exp_per_person_2011" unless params[:sort] 
+    params.merge(:sort => "research_exp_per_person_2011", :direction => "desc") if params.blank? 
     @states = [nil, "AL", "AK", "AZ", "AR", "CA", "MN", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
     @universities = University.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 30) unless params[:query]
     @universities = University.where('name LIKE ?', "%#{params[:query]}%").paginate(:page => params[:page], :per_page => 30) if params[:query]
@@ -56,10 +56,10 @@ class UniversitiesController < ApplicationController
   end
   
   def sort_column
-    University.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    University.column_names.include?(params[:sort]) ? params[:sort] : "research_exp_per_person_2011"
   end
   
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
 end

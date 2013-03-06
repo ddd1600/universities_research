@@ -13,6 +13,15 @@
 
 <%= will_paginate @universities %>
 
+<% if params[:sort] %>
+<% desc_or_asc = {"desc" => "highest to lowest", "asc" => "lowest to highest"}  %>
+  <div class="well well-small">
+  	<h5>
+  	  Sorted by <%= params[:sort] %>, <%= desc_or_asc[params[:direction]]  %>  	
+  	</h5>
+  </div>
+<% end %>
+
 <table class="table table-bordered table-hover">
   <tr>
     <th><%= sortable "name", "Name", params[:state] %></th>
