@@ -4,8 +4,8 @@ class UniversitiesController < ApplicationController
     params.merge(:sort => "research_exp_per_person_2011", :direction => "desc") if params.blank? 
     @states = [nil, "AL", "AK", "AZ", "AR", "CA", "MN", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
     @universities = University.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 30) unless params[:query]
+    @universities = University.where(:state => params[:state]).paginate(:page => params[:page], :per_page => 30) if params[:state]
     @universities = University.where('name LIKE ?', "%#{params[:query]}%").paginate(:page => params[:page], :per_page => 30) if params[:query]
-    @universities = University.where(:state => params[:state]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 30) if params[:state] and params[:sort] || params[:direction]
   end
 
   def show
