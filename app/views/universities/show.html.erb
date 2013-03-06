@@ -18,9 +18,15 @@
   </tr>
 </table>
 
-<%= link_to "Back", universities_path, :class => 'btn'  %>
-
-<h1>Available Datasets on <%= @university.name %></h1>
+<div class="hero-unit">
+  <h1><%= @university.name  %></h1>
+  <p><%= @university.address  %></p>
+  <p><%= "#{@university.city}, #{@university.state} #{@university.zip}"  %></p>
+  <p>Freshman Class of 2015 size (&Dagger;): <%= @university.freshmen_entering_latest_available %></p>
+  <p><a href="<%= @university.web_address %>"><%= @university.web_address.downcase %></a></p>
+  <p><%= @university.phone  %></p>
+  <%= link_to "Back", universities_path, :class => 'btn'  %>
+</div>
 
   <div class="row">
     <div class="span12"
@@ -126,4 +132,12 @@
    <br/><br/><br/>
    <%= high_chart("expenses", @exp) %>
   </div>
+</div>
+
+
+<div class="well">
+        <ul>Notes<br/>
+        &Dagger; - or most recent (some Ivy League records are as old as 1996 but no more than that, most are c. 2004-2011)<br/>
+        The source for this data was the Department of Education (<a href="http://nces.ed.gov/ipeds">nces.ed.gov/ipeds</a>). There were originally over 9000 federally accredite$
+        </ul>
 </div>
