@@ -134,6 +134,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    spinjs-rails (1.2.8)
+      rails (>= 3.1)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -148,8 +150,6 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-markup-rails (0.3.2.2)
-      railties (~> 3.0)
     twitter-bootstrap-rails (2.2.4)
       actionpack (>= 3.1)
       execjs
@@ -182,9 +182,9 @@ DEPENDENCIES
   rb-readline
   rspec-rails
   sass-rails (~> 3.2.3)
+  spinjs-rails
   sqlite3
   therubyracer
-  twitter-bootstrap-markup-rails (= 0.3.2.2)
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   watir-webdriver
