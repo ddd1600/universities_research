@@ -6,7 +6,11 @@ class University < ActiveRecord::Base
   has_many :users, :through => :interests
   
   def self.the_handler(params)
-    search(params[:query]).sort(params).check_for_state(params).paginate(:page => params[:page], :per_page => 30)
+    search(params[:query]).sort(params).check_for_state(params).remove_undesirables.paginate(:page => params[:page], :per_page => 30)
+  end
+  
+  def self.remove_undesirables
+    where('supply_slope_all_undergrads IS NOT NULL')
   end
   
   def self.sort_column(p)
