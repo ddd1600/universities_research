@@ -1,8 +1,8 @@
 module ApplicationHelper
-  def sortable(column, title = nil, state = nil)
+  def sortable(column, params, title = nil)
   title ||= column.titleize
-  css_class = column == sort_column ? "current #{sort_direction}" : nil
-  direction = column == sort_column && sort_direction == "desc" ? "asc" : "desc"
-  link_to title, {:sort => column, :direction => direction, :state => state}, {:class => css_class}
+  css_class = column == University.sort_column(params) ? "current #{University.sort_direction(params)}" : nil
+  direction = column == University.sort_column(params) && University.sort_direction(params) == "desc" ? "asc" : "desc"
+  link_to title, {:sort => column, :direction => direction, :state => params[:state], :query => params[:query]}, {:class => css_class}
   end
 end
