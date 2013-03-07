@@ -9,6 +9,7 @@
 <div class="well"
   <h5>This table is highly interactive. Click a blue column title to sort by a value, click again to reverse the order. You can search in just one state and order the colleges on a statistic within just that state.</h5>
   <h5>Also definitely be sure to click on some colleges (names) and view their sources of annual funding, uses of that funding, etc, all visualized.</h5>
+  <h5>Click on any College name to see what a "Supply Slope" is and means.</h5>
 </div> 
 
 <%= will_paginate @universities %>
@@ -21,13 +22,13 @@
   <% elsif current_page?(root_url) || current_page?(universities_url) %>
   <div class="well well-small"><h5>
   <ul>
-    Sorted by Research Spending per Full Time Student, highest to lowest
+    Sorted by Supply Slope (Freshmen), highest to lowest
   </h5></div>  
 <% end %>
 
 <table class="table table-bordered table-hover">
   <tr>
-    <th><%= sortable "name", params,"Name"%></th>
+    <th><%= sortable "name", params,"Name", :class => "btn btn-success"%></th>
     <th><%= sortable "city", params,"City" %></th>
     <th><%= sortable "state", params,"State" %></th>
     <th>Web Address</th>

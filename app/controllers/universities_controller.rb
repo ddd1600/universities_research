@@ -1,7 +1,7 @@
 class UniversitiesController < ApplicationController
   helper_method :sort_column, :sort_direction
   def index
-    params.merge(:sort => "research_exp_per_person_2011", :direction => "desc") if params.blank? 
+    params.merge(:sort => "supply_slope_entering_freshmen", :direction => "desc") if params.blank? 
     @states = states
     @universities = University.the_handler(params)
     @stats_undergrad = University.get_sample_stats(@universities, :supply_slope_all_undergrads) #returns [stdev, mean]
