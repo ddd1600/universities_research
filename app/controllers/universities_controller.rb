@@ -2,7 +2,7 @@ class UniversitiesController < ApplicationController
   helper_method :sort_column, :sort_direction
   def index
     params.merge(:sort => "research_exp_per_person_2011", :direction => "desc") if params.blank? 
-    @states = [nil, "AL", "AK", "AZ", "AR", "CA", "MN", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+    @states = University.states
     @universities = University.the_handler(params)
   end
 
@@ -34,6 +34,17 @@ class UniversitiesController < ApplicationController
       f.series(:name => "Investment Return", :data => @university.core_revenues.each.map(&:investment_return_pctg_core))
       f.series(:name => "Other", :data => @university.core_revenues.each.map(&:other_rev_pctg_core))
     end
+    
+    
+    @housing_differential = LazyHighCharts::HighChart.new('graph') do |f|
+      f.options[:xAxis][:categories] = @university.core_revenues.each.map(&:year)
+      #f.yAxis [{:title => {:text => "Dormitory Capacity"}}, {:title => {:text => "Dormitory Demand Derivative"}}]
+      f.series(:name => "Dormitory Capacity", :data => @university.room_and_boards.each.map(&:total_dormroom_capacity),  :type => "column")
+      f.series(:name => "capacity - entering_freshmen", :data => @university.room_and_boards.each.map(&:supply_minus_demand_f),  :type => "spline")
+      f.series(:name => "capacity - entering_undergrads", :data => @university.room_and_boards.each.map(&:supply_minus_demand),  :type => "spline")
+    end
+    
+    
     e_years = [1980, 1986, 1991, 1996, 2000, 2004, 2006, 2007, 2008, 2009, 2010, 2011]
     @endowments = LazyHighCharts::HighChart.new('graph') do |f|
       f.options[:xAxis][:categories] = e_years

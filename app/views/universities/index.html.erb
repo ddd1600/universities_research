@@ -1,8 +1,8 @@
 <%= form_tag universities_path, :method => "get", :class => "form-search" do %>
   <%= label_tag :query, "Search by name" %>
-  <%= text_field_tag :query %>
+  <%= text_field_tag :query, params[:query] %>
   <%= label_tag :state  %>
-  <%= select_tag :state, options_for_select(@states, params[:state])  %>
+  <%= select_tag :state, options_for_select(@states, params[:state])   %>
   <%= submit_tag "Search", :class => 'btn' %>
 <% end %>
 
@@ -10,6 +10,8 @@
   <h5>This table is highly interactive. Click a blue column title to sort by a value, click again to reverse the order. You can search in just one state and order the colleges on a statistic within just that state.</h5>
   <h5>Also definitely be sure to click on some colleges (names) and view their sources of annual funding, uses of that funding, etc, all visualized.</h5>
 </div> 
+
+
 
 <%= will_paginate @universities %>
 

@@ -9,8 +9,25 @@
 </div>
 
   <div class="row">
-    <div class="span12"
-         <h2>Endowment</h2>
+    <center>
+      <h1>Dormitory Supply Snapshot</h1>
+    </center>
+    <div class="span9">
+ 
+      <%= high_chart("housing_demand", @housing_differential) %>
+      </div>
+      <div class="span3"><br/><br/>
+        <div class="well">
+          The extent to which either one of the derived statistic lines (green & red) deviates beneath the 0 line indicates the potential size (in "beds") of opportunity for privately developed college housing for undergraduates. Note this chart does not yet account for full time graduate student data. 
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <center>
+        <h1>Endowment Size</h1>
+      </center>
       <%= high_chart("endowment", @endowments) %>
     </div>
   </div>

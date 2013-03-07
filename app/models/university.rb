@@ -30,6 +30,10 @@ class University < ActiveRecord::Base
     University.column_names.include?(p[:sort]) ? p[:sort] : "research_exp_per_person_2011"
   end
   
+  def self.states
+    [nil, "AL", "AK", "AZ", "AR", "CA", "MN", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+  end
+  
   def self.sort_direction(p)
     %w[asc desc].include?(p[:direction]) ? p[:direction] : "desc"
   end

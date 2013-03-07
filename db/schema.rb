@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306014050) do
+ActiveRecord::Schema.define(:version => 20130307033834) do
 
   create_table "colleges", :force => true do |t|
     t.integer  "year"
@@ -90,6 +90,10 @@ ActiveRecord::Schema.define(:version => 20130306014050) do
     t.boolean  "ok"
     t.integer  "freshmen_entering"
     t.integer  "total_entering_undergrads"
+    t.integer  "dorm_capacity_minus_entering_freshman_class_size"
+    t.integer  "entering_freshman_class_minus_dorm_capacity"
+    t.integer  "dorm_capacity_minus_total_entering_undergrads"
+    t.integer  "total_entering_undergrads_minus_dorm_capacity"
   end
 
   create_table "universities", :force => true do |t|
