@@ -11,18 +11,17 @@
   <h5>Also definitely be sure to click on some colleges (names) and view their sources of annual funding, uses of that funding, etc, all visualized.</h5>
 </div> 
 
-
-
 <%= will_paginate @universities %>
 
 <% if params[:sort] %>
 <% desc_or_asc = {"desc" => "highest to lowest", "asc" => "lowest to highest"}  %>
   <div class="well well-small"><h5>
-  	  Sorted by <%= params[:sort].titleize %>, <%= desc_or_asc[params[:direction]]  %>  	
+  	  Sorted by <%= params[:sort].titleize %>, <%= desc_or_asc[params[:direction]]  %>
   </h5></div>
   <% elsif current_page?(root_url) || current_page?(universities_url) %>
   <div class="well well-small"><h5>
-  	  Sorted by Research Spending per Full Time Student, highest to lowest  	
+  <ul>
+    Sorted by Research Spending per Full Time Student, highest to lowest
   </h5></div>  
 <% end %>
 
@@ -32,19 +31,16 @@
     <th><%= sortable "city", params,"City" %></th>
     <th><%= sortable "state", params,"State" %></th>
     <th>Web Address</th>
-    <th><%= sortable "total_enrollment_2003", params,"2003 Enrollment"%></th>
+    <th><%= sortable "supply_slope_all_undergrads", params, "Supply Slope (All)" %></th>
+    <th><%= sortable "supply_slope_entering_freshmen", params, "Supply Slope (Freshmen)" %></th>
     <th><%= sortable "total_enrollment_2011", params,"2011 Enrollment"%></th>
-    <th><%= sortable "pctg_total_enrollment_change", params,"% Change"%></th>
+    <th><%= sortable "pctg_total_enrollment_change", params,"% Enrollment Change Since 2003"%></th>
     <th><%= sortable "freshmen_entering_latest_available", params,"2011 Freshman Fall Class &Dagger;".html_safe%></th>
     <th><%= sortable "latest_endowment_number", params,"Latest Endowment Number"%></th>
     <th><%= sortable "revenues_2011", params,"Annual Revenue"%></th>
     <th><%= sortable "revenues_pctg_tuition_2011", params,"Rev % Tuition"%></th>
     <th><%= sortable "revenues_pctg_federal_aid_2011", params,"Revenues % FedAid"%></th>
     <th><%= sortable "revenues_pctg_state_funding_2011", params,"Revenues % State Funds"%></th>
-    <th><%= sortable "revenues_pctg_substate_funding_2011", params,"Revenues % Sub-state (local) funds"%></th>
-    <th><%= sortable "revenues_pctg_priv_gifts_2011", params,"Revenues % Private Gifts"%></th>
-    <th><%= sortable "revenues_pctg_inv_return_2011", params,"Revenues % Inv Return"%></th>
-    <th><%= sortable "instruction_exp_person_2011", params,"Instruction $/Student"%>
     <th><%= sortable "research_exp_per_person_2011", params,"Research $/Student" %>
   </tr>
   <% @universities.each do |f| %>
@@ -53,7 +49,8 @@
     <td><%= f.city %></td>
     <td><%= f.state %></td>
     <td><%= link_to nil, "http://#{f.web_address}".downcase %></td>
-    <td><%= f.total_enrollment_2003 %></td>
+    <td><%= f.supply_slope_all_undergrads %></td>
+    <td><%= f.supply_slope_entering_freshmen %></td>
     <td><%= f.total_enrollment_2011 %></td>
     <% x = f.pctg_total_enrollment_change.round(2) if f.pctg_total_enrollment_change || nil %>
     <td><%= "#{x}%" %></td>
@@ -63,10 +60,6 @@
     <td><%= f.revenues_pctg_tuition_2011 %></td>
     <td><%= f.revenues_pctg_federal_aid_2011 %></td>
     <td><%= f.revenues_pctg_state_funding_2011 %></td>
-    <td><%= f.revenues_pctg_substate_funding_2011 %></td>
-    <td><%= f.revenues_pctg_priv_gifts_2011 %></td>
-    <td><%= f.revenues_pctg_inv_return_2011 %></td>
-    <td><%= number_to_currency(f.instruction_exp_person_2011, :unit => "$") %></td>
     <td><%= number_to_currency(f.research_exp_per_person_2011, :unit => "$") %></td>
   </tr>
   <% end %>

@@ -10,15 +10,15 @@
 
   <div class="row">
     <center>
-      <h1>Dormitory Supply Snapshot</h1>
+      <h1>"Supply Slopes" and Total University Housing</h1>
     </center>
     <div class="span9">
  
-      <%= high_chart("housing_demand", @housing_differential) %>
+      <%= high_chart("housing_demand", @housing_diff_scatter) %>
       </div>
       <div class="span3"><br/><br/>
         <div class="well">
-          The extent to which either one of the derived statistic lines (green & red) deviates beneath the 0 line indicates the potential size (in "beds") of opportunity for privately developed college housing for undergraduates. Note this chart does not yet account for full time graduate student data. 
+          The 'supply slope' is a line which, the more downward (negative) it slopes, the more "supply strain" (demand) there is on the private sector for college housing, or at least thats the hypothesis.
         </div>
       </div>
   </div>

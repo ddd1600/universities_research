@@ -25,4 +25,20 @@ class ModifyUniversityRecords
     end
   end
   
+  def get_supply_slope_data #the 'supply slope' is a line which, the more downward (negative) it slopes, the more "supply strain" (demand) there is on the private sector for college housing, or at least thats the hypothesis
+    University.all.each do |u|
+      begin
+      rbs = u.room_and_boards
+      x = ::MathHelper.get_linear_regression_formula(rbs, :supply_minus_demand)[0].round(1)
+      u.supply_slope_all_undergrads = x unless x == (0.0/0.0)
+      y = ::MathHelper.get_linear_regression_formula(rbs, :supply_minus_demand_f)[0].round(1)
+      u.supply_slope_entering_freshmen = y unless y == (0.0/0.0)
+      u.save
+    rescue NoMethodError
+      next
+    rescue ActiveRecord::StatementInvalid; next; rescue TypeError; next
+      end
+    end
+  end
+  
 end

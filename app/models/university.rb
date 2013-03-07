@@ -9,6 +9,31 @@ class University < ActiveRecord::Base
     search(params[:query]).sort(params).check_for_state(params).paginate(:page => params[:page], :per_page => 30)
   end
   
+  def self.sort_column(p)
+    University.column_names.include?(p[:sort]) ? p[:sort] : "research_exp_per_person_2011"
+  end
+  
+  def self.sort_direction(p)
+    %w[asc desc].include?(p[:direction]) ? p[:direction] : "desc"
+  end
+  
+  def self.get_population_stats(column_symbol, class_if_not_university = nil)
+    x = class_if_not_university || University
+    data = x.all.map(&:column_symbol).compact
+    stdev = data.stdevp.round(1)
+    mean = MathHelper.sum(data) / x.count
+    [stdev, mean]
+  end
+  
+  def self.get_sample_stats(ar_ary, column_symbol)
+    data = ar_ary.map(&column_symbol).compact
+    stdev = data.compact.stdev.round(1)
+    mean = MathHelper.sum(data).round(1)
+    [stdev, mean]
+  end
+  
+  private
+  
   def self.check_for_state(params)
     unless params[:state].blank?
       where(:state => [params[:state]])
@@ -26,16 +51,6 @@ class University < ActiveRecord::Base
     order(sort_column(p) + " " + sort_direction(p))
   end
   
-  def self.sort_column(p)
-    University.column_names.include?(p[:sort]) ? p[:sort] : "research_exp_per_person_2011"
-  end
   
-  def self.states
-    [nil, "AL", "AK", "AZ", "AR", "CA", "MN", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
-  end
-  
-  def self.sort_direction(p)
-    %w[asc desc].include?(p[:direction]) ? p[:direction] : "desc"
-  end
   
 end

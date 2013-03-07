@@ -21,6 +21,7 @@ gem 'will_paginate', '~> 3.0.0'
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
 
+gem 'ruby-standard-deviation'
 gem 'rb-readline'
 gem 'nokogiri'
 gem 'awesome_print'
@@ -31,3 +32,4 @@ gem 'area'
 gem 'geokit-rails3'
 gem 'watir-webdriver'
 
+gem 'statsample'
