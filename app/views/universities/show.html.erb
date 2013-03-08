@@ -23,13 +23,13 @@
       <div class="span4"><br/><br/>
         <div class="well">
           <h5>these slopes are implied demand where a steeper negative line <em>implies</em> greater demand &Dagger;</h5>
-          <li>freshman slope = <%= @sample_stats_f.round(3) %></li>
-          <li>freshman slope <%= @university.state %> average = <%= @state_stats_f[0].round(3) %></li>
-          <li>% difference from state average = <%= MathHelper.get_percent_change_as_string(@state_stats_f[0], @sample_stats_f, false) %></li>
+          <li>freshman slope = <%= @sample_stats_f.round(1) %></li>
+          <li>freshman slope <%= @university.state %> average = <%= @state_stats_f[0].round(1) %></li>
+          <li>% difference from state average = <%= MathHelper.get_percent_change_as_string(@state_stats_f[0], @sample_stats_f) %></li>
           <br/>
-          <li>undergraduate slope = <%= @sample_stats.round(3) %></li>
-          <li>undergraduate slope <%= @university.state %> average = <%= @state_stats[0].round(3) %></li>
-          <li>% difference from state average = <%= MathHelper.get_percent_change_as_string(@state_stats[0], @sample_stats, false) %></li>
+          <li>undergraduate slope = <%= @sample_stats.round(1) %></li>
+          <li>undergraduate slope <%= @university.state %> average = <%= @state_stats[0].round(1) %></li>
+          <li>% difference from state average = <%= MathHelper.get_percent_change_as_string(@state_stats[0], @sample_stats) %></li>
         </div>
       </div>
       

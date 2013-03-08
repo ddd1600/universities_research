@@ -1,6 +1,6 @@
 class MathHelper
   
-  def self.get_percent_change_as_string(deviant, original, negative=nil)
+  def self.get_percent_change_as_string(original, deviant, negative=nil)
     begin
     diff = deviant.to_d - original.to_d
     pctg_change = diff / original.to_d * 100
