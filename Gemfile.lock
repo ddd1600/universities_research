@@ -45,6 +45,7 @@ GEM
       execjs
     coffee-script-source (1.5.0)
     commonjs (0.2.6)
+    descriptive-statistics (1.3.6)
     diff-lcs (1.1.3)
     dirty-memoize (0.0.4)
     distribution (0.7.0)
@@ -148,7 +149,6 @@ GEM
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
     ruby-ole (1.2.11.6)
-    ruby-standard-deviation (2.0.0)
     rubyvis (0.5.2)
     rubyzip (0.9.9)
     sass (3.2.6)
@@ -212,6 +212,7 @@ DEPENDENCIES
   awesome_print
   bcrypt-ruby
   coffee-rails (~> 3.2.1)
+  descriptive-statistics
   geokit-rails3
   google_visualr
   httparty
@@ -222,7 +223,6 @@ DEPENDENCIES
   rails (= 3.2.12)
   rb-readline
   rspec-rails
-  ruby-standard-deviation
   sass-rails (~> 3.2.3)
   sqlite3
   statsample

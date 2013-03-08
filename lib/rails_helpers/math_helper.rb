@@ -1,5 +1,13 @@
 class MathHelper
   
+  def self.get_percent_change_as_string(deviant, original, negative=nil)
+    diff = deviant.to_d - original.to_d
+    pctg_change = diff / original.to_d * 100
+    pctg_change = pctg_change * -1 if negative == true
+    pctg_change = pctg_change.abs if negative == false
+    "#{pctg_change.round(2).to_digits}%"
+  end
+  
   def self.sum(ary)
       ary.compact.inject(0.0) { |result, el| result + el }
   end
@@ -16,9 +24,14 @@ class MathHelper
     [x1, x2]
   end
   
+  def self.get_slope_of_linear_regr(ar_ary, column_name)
+    data = MathHelper.get_linear_regression_formula(ar_ary, column_name)
+    data[0]
+  end
+  
   def self.get_linear_regression_formula_output(ar_ary, column_name)
     data = MathHelper.get_linear_regression_formula(ar_ary, column_name)
-    "y = #{data[0].round(2)}x + #{data[1].round(2)}"
+    "y = #{data[0].round(2)}x + #{data[1].round(1)}"
   end
   
   def self.get_linear_regression_formula(ar_ary, column_name)#, for_display = nil)

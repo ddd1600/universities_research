@@ -9,19 +9,30 @@
 </div>
 
   <div class="row">
-    <center>
+    <div class="span8">
+      <center>
       <h1>"Supply Slopes" and Total University Housing</h1>
     </center>
-    <div class="span9">
- 
       <%= high_chart("housing_demand", @housing_diff_scatter) %>
+        <div class="well">
+          <p>
+            &Dagger; To best understand this graph, try to think of undergraduate dormitory shortages ("WHERE total_dorm_beds < total_freshman_enrollment") not as a real estate developer might viz. as opportunities for private development, but rather, as how a college administrator might viz. as a "problem" to be managed and mediated. So, the steeper these lines, the more negative these "supply slopes", whether you're looking at the line or the number (m), the higher the suspected University dormitory needs are.
+          </p>
+        </div>
       </div>
-      <div class="span3"><br/><br/>
+      <div class="span4"><br/><br/>
         <div class="well">
           The 'supply slope' is a line which, the more downward (negative) it slopes, the more "supply strain" (demand) there is on the private sector for college housing, or at least thats the hypothesis.
         </div>
         <div class="well">
-          
+          <h5>these slopes are implied demand where a steeper negative line <em>implies</em> greater demand &Dagger;</h5>
+          <li>freshman slope = <%= @sample_stats_f.round(3) %></li>
+          <li>freshman slope <%= @university.state %> average = <%= @state_stats_f[0].round(3) %></li>
+          <li>% difference from state average = <%= MathHelper.get_percent_change_as_string(@state_stats_f[0], @sample_stats_f, false) %></li>
+          <br/>
+          <li>undergraduate slope = <%= @sample_stats.round(3) %></li>
+          <li>undergraduate slope <%= @university.state %> average = <%= @state_stats[0].round(3) %></li>
+          <li>% difference from state average = <%= MathHelper.get_percent_change_as_string(@state_stats[0], @sample_stats, false) %></li>
         </div>
       </div>
       

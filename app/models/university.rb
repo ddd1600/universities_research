@@ -1,6 +1,8 @@
+require 'descriptive-statistics'
+
 class University < ActiveRecord::Base
   # attr_accessible :title, :body
-  [:core_expenses, :core_revenues, :freshman_stats, :room_and_boards].each do |x|
+  [:core_expenses, :core_revenues, :freshman_stats, :room_and_boards, :enrollments].each do |x|
     has_many x
   end
   has_many :users, :through => :interests
@@ -24,15 +26,23 @@ class University < ActiveRecord::Base
   def self.get_population_stats(column_symbol, class_if_not_university = nil)
     x = class_if_not_university || University
     data = x.all.map(&:column_symbol).compact
-    stdev = data.stdevp.round(1)
+    stdev = DescriptiveStatistics.new(data).standard_deviation.round(3)
     mean = MathHelper.sum(data) / x.count
     [stdev, mean]
   end
   
+  def self.get_slope_stats_for_where(nested_model_names, where_what, where_what_is, column_symbol)
+    [nested_model_names, where_what, column_symbol].map!(&:to_sym)
+    colleges_in_state = University.where(where_what => where_what_is)
+    ary_of_arys = colleges_in_state.map(&nested_model_names)
+    slopes = ary_of_arys.map { |nested_ary| MathHelper.get_slope_of_linear_regr(nested_ary, column_symbol) }
+    [MathHelper.avg(slopes), slopes]
+  end
+  
   def self.get_sample_stats(ar_ary, column_symbol)
     data = ar_ary.map(&column_symbol).compact
-    stdev = data.compact.stdev.round(1)
-    mean = MathHelper.sum(data).round(1)
+    stdev = ::DescriptiveStatistics.new(data).standard_deviation.round(3)
+    mean = MathHelper.sum(data).round(1) / data.count
     [stdev, mean]
   end
   
