@@ -46,7 +46,7 @@
   </tr>
   <% @universities.each do |f| %>
   <tr>
-    <td><%= link_to f.name, university_path(f) %></td>
+    <td><%= link_to f.name, params.merge({:controller => "universities", :action => "show", :id => f.id}) %></td>
     <td><%= f.city %></td>
     <td><%= f.state %></td>
     <td><%= link_to nil, "http://#{f.web_address}".downcase %></td>
