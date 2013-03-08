@@ -5,7 +5,7 @@
   <p>Freshman Class of 2015 size (&Dagger;): <%= @university.freshmen_entering_latest_available %></p>
   <p><%= link_to nil, "http://#{@university.web_address}".downcase  %></p>
   <p><%= @university.phone  %></p>
-  <%= link_to "Back", universities_path, :class => 'btn'  %>
+  <%= link_to "Back", root_url, :class => 'btn'  %>
 </div>
 
   <div class="row">
