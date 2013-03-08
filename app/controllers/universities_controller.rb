@@ -4,8 +4,8 @@ class UniversitiesController < ApplicationController
     params.merge(:sort => "supply_slope_entering_freshmen", :direction => "desc") if params.blank? 
     @states = states
     @universities = University.the_handler(params)
-    @stats_undergrad = University.get_sample_stats(@universities, :supply_slope_all_undergrads) #returns [stdev, mean]
-    @stats_freshman = University.get_sample_stats(@universities, :supply_slope_entering_freshmen) #returns [stdev, mean]
+#    @stats_undergrad = University.get_sample_stats(@universities, :supply_slope_all_undergrads) #returns [stdev, mean]
+#    @stats_freshman = University.get_sample_stats(@universities, :supply_slope_entering_freshmen) #returns [stdev, mean]
   end
 
   def show
