@@ -35,7 +35,9 @@ class University < ActiveRecord::Base
     [nested_model_names, where_what, column_symbol].map!(&:to_sym)
     colleges_in_state = University.where(where_what => where_what_is)
     ary_of_arys = colleges_in_state.map(&nested_model_names)
-    slopes = ary_of_arys.map { |nested_ary| MathHelper.get_slope_of_linear_regr(nested_ary, column_symbol) }
+    slopes = ary_of_arys.map do |nested_ary|
+      MathHelper.get_slope_of_linear_regr(nested_ary, column_symbol)
+    end
     [MathHelper.avg(slopes), slopes]
   end
   

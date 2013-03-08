@@ -1,5 +1,8 @@
 class UniversitiesController < ApplicationController
   helper_method :sort_column, :sort_direction
+  
+  before_filter :guide_user_if_new, :only => :index
+  
   def index
     params.merge(:sort => "supply_slope_entering_freshmen", :direction => "desc") if params.blank? 
     @states = states
@@ -74,6 +77,14 @@ class UniversitiesController < ApplicationController
   end
   
   private
+  
+  def guide_user_if_new
+    unless ["/", "/universities"].include?(request.path)
+      params.clear
+      params[:sort] = "supply_slope_entering_freshmen"
+      params[:asc] = "asc"
+    end
+  end
   
   
 end
