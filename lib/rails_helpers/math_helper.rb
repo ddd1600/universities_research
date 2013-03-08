@@ -1,11 +1,13 @@
 class MathHelper
   
   def self.get_percent_change_as_string(deviant, original, negative=nil)
+    begin
     diff = deviant.to_d - original.to_d
     pctg_change = diff / original.to_d * 100
     pctg_change = pctg_change * -1 if negative == true
     pctg_change = pctg_change.abs if negative == false
     "#{pctg_change.round(2).to_digits}%"
+    rescue FloatDomainError; return nil; end
   end
   
   def self.sum(ary)
@@ -25,8 +27,10 @@ class MathHelper
   end
   
   def self.get_slope_of_linear_regr(ar_ary, column_name)
-    data = MathHelper.get_linear_regression_formula(ar_ary, column_name)
-    data[0]
+   begin
+      data = MathHelper.get_linear_regression_formula(ar_ary, column_name)
+      data[0]
+   rescue TypeError; return nil; end
   end
   
   def self.get_linear_regression_formula_output(ar_ary, column_name)
