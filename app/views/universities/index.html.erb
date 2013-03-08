@@ -39,10 +39,6 @@
     <th><%= sortable "freshmen_entering_latest_available", params,"2011 Freshman Fall Class &Dagger;".html_safe%></th>
     <th><%= sortable "latest_endowment_number", params,"Latest Endowment Number"%></th>
     <th><%= sortable "revenues_2011", params,"Annual Revenue"%></th>
-    <th><%= sortable "revenues_pctg_tuition_2011", params,"Rev % Tuition"%></th>
-    <th><%= sortable "revenues_pctg_federal_aid_2011", params,"Revenues % FedAid"%></th>
-    <th><%= sortable "revenues_pctg_state_funding_2011", params,"Revenues % State Funds"%></th>
-    <th><%= sortable "research_exp_per_person_2011", params,"Research $/Student" %>
   </tr>
   <% @universities.each do |f| %>
   <tr>
@@ -58,10 +54,6 @@
     <td><%= f.freshmen_entering_latest_available %></td>
     <td><%= number_to_currency(f.latest_endowment_number, :unit => "$") %></td>
     <td><%= number_to_currency(f.revenues_2011, :unit => "$") %></td>
-    <td><%= f.revenues_pctg_tuition_2011 %></td>
-    <td><%= f.revenues_pctg_federal_aid_2011 %></td>
-    <td><%= f.revenues_pctg_state_funding_2011 %></td>
-    <td><%= number_to_currency(f.research_exp_per_person_2011, :unit => "$") %></td>
   </tr>
   <% end %>
 </table>
