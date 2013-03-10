@@ -52,12 +52,11 @@ class UniversitiesController < ApplicationController
       regr_formula = MathHelper.get_linear_regression_formula_output(rbs, :supply_minus_demand)
       f.series(:type => "column", :name => "Housing Supply", :data => MathHelper.prep_as_datapoints(rbs, :total_dormroom_capacity))
       #f.series(:type => "column", :name => "Full Time Student Enrollment", :data => MathHelper.prep_as_datapoints(es, :full_time_students))
-      f.series(:type => "line", :name => "#{MathHelper.get_linear_regression_formula_output(rbs, :supply_minus_demand)} -- linear regression trend (total_entering_undergrads stat)", :data => MathHelper.get_x1_and_x2(rbs, :supply_minus_demand))
-      f.series(:type => "line", :name => "#{MathHelper.get_linear_regression_formula_output(rbs, :supply_minus_demand_f)} -- linear regression trend (total_entering_freshment stat)", :data => MathHelper.get_x1_and_x2(rbs, :supply_minus_demand_f))
+      f.series(:type => "spline", :name => "Freshman Housing Supply Indicator", :data => MathHelper.prep_as_datapoints(rbs, :supply_minus_demand))
+      f.series(:type => "line", :name => MathHelper.get_linear_regression_formula_output(rbs, :supply_minus_demand), :data => MathHelper.get_x1_and_x2(rbs, :supply_minus_demand))
+      f.series(:type => "spline", :name => "Undergraduate Housing Supply Indicator", :data => MathHelper.prep_as_datapoints(rbs, :supply_minus_demand_f))
+      f.series(:type => "line", :name => MathHelper.get_linear_regression_formula_output(rbs, :supply_minus_demand_f), :data => MathHelper.get_x1_and_x2(rbs, :supply_minus_demand_f))
       #f.series(:type => "line", :name => "#{MathHelper.get_linear_regression_formula_output(es, :full_time_students)} -- linear regression trend (total_entering_freshment stat)", :data => MathHelper.get_x1_and_x2(rbs, :supply_minus_demand_f))
-      
-      f.series(:type => "spline", :name => "Housing Supply Indicator (dorm_supply - total_entering_undergrads)", :data => MathHelper.prep_as_datapoints(rbs, :supply_minus_demand))
-      f.series(:type => "spline", :name => "Housing Supply Indicator (dorm_supply - total_entering_freshmen)", :data => MathHelper.prep_as_datapoints(rbs, :supply_minus_demand_f))
     end
     @sample_stats_f = MathHelper.get_slope_of_linear_regr(rbs, :supply_minus_demand_f)
     @sample_stats = MathHelper.get_slope_of_linear_regr(rbs, :supply_minus_demand)
