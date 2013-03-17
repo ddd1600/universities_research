@@ -91,6 +91,7 @@ GEM
     multi_json (1.6.1)
     multi_xml (0.5.3)
     nokogiri (1.5.6)
+    pg (0.14.1)
     polyglot (0.3.3)
     prawn (0.8.4)
       prawn-core (>= 0.8.4, < 0.9)
@@ -220,6 +221,7 @@ DEPENDENCIES
   lazy_high_charts
   less-rails
   nokogiri
+  pg
   rails (= 3.2.12)
   rb-readline
   rspec-rails
