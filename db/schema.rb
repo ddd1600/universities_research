@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317013858) do
+ActiveRecord::Schema.define(:version => 20130317015542) do
 
   create_table "colleges", :force => true do |t|
     t.integer  "year"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130317013858) do
     t.integer  "year"
     t.integer  "university_id"
     t.integer  "ipeds_id"
-    t.integer  "core_expenses_usd"
+    t.float    "core_expenses_usd"
     t.integer  "instruction_exp_per_fte"
     t.integer  "research_exp_per_fte"
     t.integer  "public_service_exp_per_fte"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20130317013858) do
 
   create_table "core_revenues", :force => true do |t|
     t.integer  "year"
-    t.integer  "core_revenues_usd"
+    t.float    "core_revenues_usd"
     t.integer  "tuition_et_al_pctg_core"
     t.integer  "state_approp_pctg_core"
     t.integer  "local_govt_approp_pctg"
