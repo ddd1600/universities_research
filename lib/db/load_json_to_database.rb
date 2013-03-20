@@ -2,7 +2,7 @@ require 'json'
 
 class LoadJsonToDatabase
   def self.go(classname)
-    ary = JSON.parse(File.read(File.join(Rails.root, 'lib', 'db', "#{classname}.json")))
+    ary = JSON.parse(File.read(File.join(Rails.root, 'lib', 'assets', "#{classname}.json")))
     column_names = ary.first.keys
     class_r = classname || classname.constantize
     ary.each do |ar_hash|

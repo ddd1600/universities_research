@@ -14,7 +14,9 @@
   <h5>Click on any College name to see what a "Supply Slope" is and means.</h5>
 </div> 
 
-<%= will_paginate @universities %>
+<div class="digg_pagination">
+  <%= will_paginate @yearly_derivatives %>
+</div>
 
 <% if params[:sort] %>
 <% desc_or_asc = {"desc" => "highest to lowest", "asc" => "lowest to highest"}  %>
@@ -41,6 +43,7 @@
     <th><%= sortable "freshmen_entering_latest_available", params,"2011 Freshman Fall Class &Dagger;".html_safe%></th>
     <th><%= sortable "latest_endowment_number", params,"Latest Endowment Number"%></th>
     <th><%= sortable "revenues_2011", params,"Annual Revenue"%></th>
+		<th><%= sortable "research_exp_per_person_2011", params, "Research $/FT-Student" %></th>
   </tr>
   <% @universities.each do |f| %>
   <tr>
@@ -56,9 +59,14 @@
     <td><%= f.freshmen_entering_latest_available %></td>
     <td><%= number_to_currency(f.latest_endowment_number, :unit => "$") %></td>
     <td><%= number_to_currency(f.revenues_2011, :unit => "$") %></td>
+		<td><%= number_to_currency(f.research_exp_per_person_2011, :unit => "$") %></td>
   </tr>
   <% end %>
 </table>
+
+<div class="digg_pagination">
+  <%= will_paginate @yearly_derivatives %>
+</div>
 
 <div class="well">
 	<ul>Notes<br/>
