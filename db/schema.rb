@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307122855) do
+ActiveRecord::Schema.define(:version => 20130317015542) do
 
   create_table "colleges", :force => true do |t|
     t.integer  "year"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130307122855) do
     t.integer  "year"
     t.integer  "university_id"
     t.integer  "ipeds_id"
-    t.integer  "core_expenses_usd"
+    t.float    "core_expenses_usd"
     t.integer  "instruction_exp_per_fte"
     t.integer  "research_exp_per_fte"
     t.integer  "public_service_exp_per_fte"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20130307122855) do
 
   create_table "core_revenues", :force => true do |t|
     t.integer  "year"
-    t.integer  "core_revenues_usd"
+    t.float    "core_revenues_usd"
     t.integer  "tuition_et_al_pctg_core"
     t.integer  "state_approp_pctg_core"
     t.integer  "local_govt_approp_pctg"
@@ -128,8 +128,8 @@ ActiveRecord::Schema.define(:version => 20130307122855) do
     t.integer  "ipeds_unit_id"
     t.integer  "ope_id"
     t.integer  "zip_code"
-    t.integer  "total_enrollment_2011"
-    t.integer  "total_enrollment_2003"
+    t.float    "total_enrollment_2011"
+    t.float    "total_enrollment_2003"
     t.float    "pctg_total_enrollment_change"
     t.boolean  "c_class"
     t.boolean  "b_class"
@@ -140,20 +140,20 @@ ActiveRecord::Schema.define(:version => 20130307122855) do
     t.boolean  "ccc_class"
     t.boolean  "bbb_class"
     t.boolean  "aaa_class"
-    t.integer  "endowment_2011"
-    t.integer  "endowment_2010"
-    t.integer  "endowment_2009"
-    t.integer  "endowment_2008"
-    t.integer  "endowment_2007"
-    t.integer  "endowment_2006"
-    t.integer  "endowment_2004"
-    t.integer  "endowment_2000"
-    t.integer  "endowment_1996"
-    t.integer  "endowment_1991"
-    t.integer  "endowment_1986"
-    t.integer  "endowment_1980"
+    t.float    "endowment_2011"
+    t.float    "endowment_2010"
+    t.float    "endowment_2009"
+    t.float    "endowment_2008"
+    t.float    "endowment_2007"
+    t.float    "endowment_2006"
+    t.float    "endowment_2004"
+    t.float    "endowment_2000"
+    t.float    "endowment_1996"
+    t.float    "endowment_1991"
+    t.float    "endowment_1986"
+    t.float    "endowment_1980"
     t.boolean  "private_school"
-    t.integer  "latest_endowment_number"
+    t.float    "latest_endowment_number"
     t.integer  "revenues_pctg_tuition_2011"
     t.integer  "revenues_pctg_federal_aid_2011"
     t.integer  "revenues_pctg_inv_return_2011"
