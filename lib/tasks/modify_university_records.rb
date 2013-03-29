@@ -1,4 +1,15 @@
 class ModifyUniversityRecords
+
+  def add_enrollment_slopes
+    University.all.each do |u|
+      u.full_time_students_slope = MathHelper.get_slope_of_linear_regr(u.enrollments, :full_time_students)
+      u.part_time_students_slope = MathHelper.get_slope_of_linear_regr(u.enrollments, :part_time_students)
+      u.total_students_slope = MathHelper.get_slope_of_linear_regr(u.enrollments, :total_students)
+      u.entering_freshmen_slope = MathHelper.get_slope_of_linear_regr(u.freshman_stats, :freshmen_entering)
+      u.total_entering_undergrads = MathHelper.get_slope_of_linear_regr(u.freshman_stats, :total_entering_undergrads)
+      u.save
+    end
+  end
   
   def add_state_local_funding_etc
     foreign_names = ["state_approp_pctg_core", "local_govt_approp_pctg", "freshmen_entering"]

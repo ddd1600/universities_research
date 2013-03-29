@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317015542) do
+ActiveRecord::Schema.define(:version => 20130329022610) do
 
   create_table "colleges", :force => true do |t|
     t.integer  "year"
@@ -166,6 +166,11 @@ ActiveRecord::Schema.define(:version => 20130317015542) do
     t.integer  "freshmen_entering_latest_available"
     t.float    "supply_slope_all_undergrads"
     t.float    "supply_slope_entering_freshmen"
+    t.float    "full_time_students_slope"
+    t.float    "part_time_students_slope"
+    t.float    "total_students_slope"
+    t.float    "entering_freshmen_slope"
+    t.float    "total_entering_undergrads"
   end
 
   create_table "users", :force => true do |t|
