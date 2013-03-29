@@ -3,15 +3,25 @@ class ModifyUniversityRecords
   def add_enrollment_slopes
     University.all.each do |u|
       x = MathHelper.get_slope_of_linear_regr(u.enrollments, :full_time_students)
-      u.full_time_students_slope = x unless x.nan?
+      xx = x unless x.nan?
+      full_time_students_slope = xx.round(2) unless x.nil?
+      
       y = MathHelper.get_slope_of_linear_regr(u.enrollments, :part_time_students)
-      u.part_time_students_slope = y unless y.nan?
+      yy = y unless y.nan?
+      u.part_time_students_slope = yy.round(2) unless yy.nil?
+      
       z = MathHelper.get_slope_of_linear_regr(u.enrollments, :total_students)
-      u.total_students_slope = z unless z.nan?
+      zz = z unless z.nan?
+      u.total_students_slope = zz.round(2)
+      
       a = MathHelper.get_slope_of_linear_regr(u.freshman_stats, :freshmen_entering)
-      u.entering_freshmen_slope = a unless a.nan?
+      aa = a unless a.nan?
+      u.entering_freshmen_slope = aa.round(2) unless aa.nil?
+      
       b = MathHelper.get_slope_of_linear_regr(u.freshman_stats, :total_entering_undergrads)
-      u.total_entering_undergrads = b unless b.nan?
+      bb = b unless b.nan?
+      u.total_entering_undergrads = bb.round(2) unless bb.nil?
+      
       u.save
       ap u
     end
