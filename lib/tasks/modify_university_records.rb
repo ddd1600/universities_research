@@ -8,6 +8,7 @@ class ModifyUniversityRecords
       u.entering_freshmen_slope = MathHelper.get_slope_of_linear_regr(u.freshman_stats, :freshmen_entering)
       u.total_entering_undergrads = MathHelper.get_slope_of_linear_regr(u.freshman_stats, :total_entering_undergrads)
       u.save
+      ap u
     end
   end
   
